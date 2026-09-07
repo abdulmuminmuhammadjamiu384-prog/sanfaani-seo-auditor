@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Audit Report: {{ audit.url }}{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="report-header">
+        <div>
+            <h2>Audit Report</h2>
+            <p class="text-muted">{{ audit.url }}</p>
+        </div>
+        <div class="score-badge {% if audit.audit_score >= 80 %}score-high{% elif audit.audit_score >= 50 %}score-mid{% else %}score-low{% endif %}">
+            {{ audit.audit_score }} / 100
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="grid-stats">
+        <div class="stat-box"><strong>HTTP Status:</strong> {{ audit.status_code }}</div>
+        <div class="stat-box"><strong>Response Time:</strong> {{ audit.response_time_ms }} ms</div>
+        <div class="stat-box"><strong>H1 Headings:</strong> {{ audit.h1_count }}</div>
+        <div class="stat-box"><strong>Missing Alt Text:</strong> {{ audit.images_without_alt }} / {{ audit.total_images }}</div>
+        <div class="stat-box"><strong>Broken Links:</strong> {{ audit.broken_links_count }}</div>
+    </div>
+
+    <h3>Deductions & Recommendations</h3>
+    {% if deductions %}
+        <ul class="deduction-list">
+            {% for item in deductions %}
+                <li>⚠️ {{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-success">🎉 Excellent! No structural SEO penalties were found.</p>
+    {% endif %}
+
+    <div class="action-bar">
+        <a href="{{ url_for('index') }}" class="btn">Audit Another Site</a>
+        <a href="{{ url_for('history') }}" class="btn">View All Audits</a>
+    </div>
+</div>
+{% endblock %}

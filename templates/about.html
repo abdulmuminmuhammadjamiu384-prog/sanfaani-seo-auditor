@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Methodology | Sanfaani{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>Audit Methodology & Limitations</h2>
+    <p>This auditor inspects on-page SEO health and baseline technical performance:</p>
+    <ul>
+        <li><strong>Server Responsiveness:</strong> Verifies HTTP 200 responses and connection latency.</li>
+        <li><strong>Title & Meta Tag Quality:</strong> Evaluates optimal character limits (10-70 chars for titles, 50-160 for descriptions).</li>
+        <li><strong>Heading Hierarchy:</strong> Ensures one clear, unambiguous &lt;h1&gt; tag per landing page.</li>
+        <li><strong>Image Accessibility:</strong> Checks for presence of meaningful descriptive <code>alt</code> tags.</li>
+        <li><strong>Internal Navigation:</strong> Probes internal hyperlink health to identify broken paths.</li>
+    </ul>
+    <h3>Acknowledged Limitations</h3>
+    <p>Dynamic Single Page Applications (SPAs) relying heavily on client-side JavaScript rendering may not expose elements during raw HTTP parsing without headless browser rendering.</p>
+</div>
+{% endblock %}

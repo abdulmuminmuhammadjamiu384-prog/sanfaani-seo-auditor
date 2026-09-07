@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Audit History | Sanfaani{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="report-header">
+        <h2>Audit History</h2>
+        <a href="{{ url_for('export_csv') }}" class="btn btn-primary">Export CSV Report</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Target URL</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Response Time</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in audits %}
+            <tr>
+                <td>{{ a.url }}</td>
+                <td><strong>{{ a.audit_score }}%</strong></td>
+                <td>{{ a.status_code }}</td>
+                <td>{{ a.response_time_ms }} ms</td>
+                <td>{{ a.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td><a href="{{ url_for('result', audit_id=a.id) }}" class="link-btn">View</a></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">No audits conducted yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

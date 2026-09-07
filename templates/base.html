@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sanfaani SEO Auditor{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="{{ url_for('index') }}" class="logo">Sanfaani <span>SEO Auditor</span></a>
+            <nav>
+                <a href="{{ url_for('index') }}">New Audit</a>
+                <a href="{{ url_for('history') }}">Audit History</a>
+                <a href="{{ url_for('about') }}">Methodology</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sanfaani Ltd | Digital Career Academy</p>
+        </div>
+    </footer>
+</body>
+</html>

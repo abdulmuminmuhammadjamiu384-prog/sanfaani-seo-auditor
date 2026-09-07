@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Audit a Website | Sanfaani{% endblock %}
+{% block content %}
+<section class="hero-card">
+    <h2>Website Health & SEO Auditor</h2>
+    <p>Perform an instant, privacy-conscious audit of website responsiveness, meta tags, and accessibility.</p>
+    
+    <form method="POST" action="{{ url_for('index') }}" class="audit-form">
+        <div class="form-group">
+            <input type="url" name="url" placeholder="https://example.com" required>
+            <button type="submit" class="btn btn-primary">Run SEO Audit</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
